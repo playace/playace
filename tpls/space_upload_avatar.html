@@ -33,40 +33,39 @@
 		    {* 个人中心导航栏 *}
 
 			<div class="inner_content_left_subbar">
-				<div class="inner_content_left_subbar_title">个人设置 - 修改密码</div>
+				<div class="inner_content_left_subbar_title">个人设置 - 基本资料</div>
 			</div>
 			<div class="uc_linenodash">
 				<div class="uc_user_setupmenubar">
-          <a href="space.php?action=setup_profile" title="修改基本资料">基本资料</a> |
-          <a href="space.php?action=upload_avatar" title="更新头像">更新头像</a> |
-          <a href="space.php?action=setup_password" title="修改密码"><b>修改密码</b></a>
+					<a href="space.php?action=setup_profile" title="修改基本资料">基本资料</a> |
+          <a href="space.php?action=upload_avatar" title="更新头像"><b>更新头像</b></a> |
+          <a href="space.php?action=setup_password" title="修改密码">修改密码</a>
 				</div>
 			</div>
 			<div class="inner_subtitle_sepaline"></div>
-			<form action="space.php?action=setup_password" method="POST">
+			<form enctype="multipart/form-data" action="space.php?action=upload_avatar" method="POST">
 			<input type="hidden" name="uid" value="{$user_session.uid}">
 			<div class="inner_form_commonbar">
-				<div class="inner_form_commonbar_text">原密码</div>
+        <div class="inner_form_commonbar_text">当前头像</div>
+        <div class="inner_form_commonbar_formelement" style="height: 150px;">
+            {if $avatar !=''}
+            <img src="{$avatar}" width="144" height="144" />
+            {/if}
+        </div>
+      </div>
+      {if $user_session.upload_avatar_error != ''}
+      <div class="inner_form_commonbar" style="height: 30px;">
+        <div class="inner_form_commonbar_text"> </div>
+        <div class="inner_form_commonbar_formelement">
+            <span style="color:red;">{$user_session.upload_avatar_error}</span>
+        </div>
+      </div>
+      {/if}
+			<div class="inner_form_commonbar" style="height: 60px;">
+				<div class="inner_form_commonbar_text">上传新头像</div>
 				<div class="inner_form_commonbar_formelement">
-					<input class="inner_input_s2" type="password" name="old_password">
-				</div>
-			</div>
-			<div class="inner_form_commonbar">
-				<div class="inner_form_commonbar_text">新密码</div>
-				<div class="inner_form_commonbar_formelement">
-					<input class="inner_input_s2" type="password" name="new_password">
-				</div>
-			</div>
-			<div class="inner_form_commonbar">
-				<div class="inner_form_commonbar_text">确认密码</div>
-				<div class="inner_form_commonbar_formelement">
-					<input class="inner_input_s2" type="password" name="confirm_password">
-				</div>
-			</div>
-			<div class="inner_form_commonbar">
-				<div class="inner_form_commonbar_text"></div>
-				<div class="inner_form_commonbar_formelement">
-					<input class="inner_btn" type="submit" value="提交">
+            <input type="file" id="imgFile" name="imgFile" /><br />
+            <input type="submit" value="上传头像" />
 				</div>
 			</div>
 			</form>

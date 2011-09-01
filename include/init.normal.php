@@ -32,4 +32,6 @@ require_once HELPER_PATH . '/func.php';
 
 //后台news图片上传路径
 define('NEWS_UPLOAD_DIR', dirname(__FILE__) . '/../static/img/news/');
+//前台用户头像上传路径
+define('AVATAR_UPLOAD_DIR', dirname(__FILE__) . '/../static/img/avatar/');
 /*EOF*/

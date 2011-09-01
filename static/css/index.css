@@ -265,7 +265,7 @@ body {
 	BACKGROUND-IMAGE: url(../img/flagbanner_bg.png);
 	BACKGROUND-REPEAT: no-repeat;
 	LEFT: -15px;
-	FONT-FAMILY: 微软雅黑, 幼圆;
+	FONT-FAMILY: "微软雅黑", "幼圆";
 	font-size: 18px;
 	font-weight: bold;
 	color: #FFF;
@@ -280,7 +280,7 @@ body {
 	Z-INDEX: 2;
 	BACKGROUND-IMAGE: url(../img/more_array.gif);
 	BACKGROUND-REPEAT: no-repeat;
-	background-position: LEFT CENTER;
+	background-position: left center;
 	right: 0px;
 	text-align: left;
 	padding-left: 12px;
@@ -508,7 +508,7 @@ body {
 	width: 65px;
 	HEIGHT: 27px;
 	margin-left: 20px;
-	FONT-FAMILY: 微软雅黑, 幼圆;
+	FONT-FAMILY: "微软雅黑", "幼圆";
 	font-size: 20px;
 	font-weight: bold;
 	color: #000;
@@ -599,7 +599,7 @@ body {
 	background-repeat: no-repeat;
 	background-position: left center;
 	text-align: left;
-	FONT-FAMILY: 微软雅黑, 幼圆;
+	FONT-FAMILY: "微软雅黑", "幼圆";
 	font-size: 16px;
 	color: #000;
 }
@@ -647,7 +647,7 @@ body {
 	background-repeat: no-repeat;
 	background-position: left center;
 	text-align: left;
-	FONT-FAMILY: 微软雅黑, 幼圆;
+	FONT-FAMILY: "微软雅黑", "幼圆";
 	font-size: 16px;
 	color: #000;
 }
@@ -745,7 +745,7 @@ body {
 	background-image: url(../img/topusertitle_bg.gif);
 	background-repeat: no-repeat;
 	background-position: center bottom;
-	FONT-FAMILY: 微软雅黑, 幼圆;
+	FONT-FAMILY: "微软雅黑", "幼圆";
 	font-size: 16px;
 	color: #000;
 }
@@ -841,7 +841,7 @@ body {
 	background-repeat: no-repeat;
 	background-position: left center;
 	text-align: left;
-	FONT-FAMILY: 微软雅黑, 幼圆;
+	FONT-FAMILY: "微软雅黑", "幼圆";
 	font-size: 16px;
 	color: #000;
 }

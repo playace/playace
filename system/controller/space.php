@@ -210,11 +210,112 @@ switch ($action)
 		}
 
 	break;
-
+  
+  case 'upload_avatar':
+    //有上传文件时
+    if (isset($_FILES['imgFile']) && $_FILES['imgFile']['name'] != '') {
+      $err = '';
+      require_once 'admin/json.php';
+      $save_path = AVATAR_UPLOAD_DIR;
+      $php_url = dirname($_SERVER['PHP_SELF']) . '/';
+      //@todo 上线前修改 '/static/img/avatar/'
+      $save_url = $php_url . '../../static/img/avatar/';
+      //定义允许上传的文件扩展名
+      $ext_arr = array('gif', 'jpg', 'jpeg', 'png');
+      //最大文件大小
+      $max_size = 1000000;
+    
+      $save_path = realpath($save_path) . '/';
+      //原文件名
+      $file_name = $_FILES['imgFile']['name'];
+      //服务器上临时文件名
+      $tmp_name = $_FILES['imgFile']['tmp_name'];
+      //文件大小
+      $file_size = $_FILES['imgFile']['size'];
+      //检查文件名
+      if (!$file_name) {
+        $_SESSION['upload_avatar_error'] = "请选择文件";
+        show('space.php?action=upload_avatar');
+      }
+      //检查目录
+      if (@is_dir($save_path) === false) {
+        $_SESSION['upload_avatar_error'] = "上传目录不存在";
+        show('space.php?action=upload_avatar');
+      }
+      //检查目录写权限
+      if (@is_writable($save_path) === false) {
+        $_SESSION['upload_avatar_error'] = "上传目录没有写权限";
+        show('space.php?action=upload_avatar');
+      }
+      //检查是否已上传
+      if (@is_uploaded_file($tmp_name) === false) {
+        $_SESSION['upload_avatar_error'] = "临时文件可能不是上传文件";
+        show('space.php?action=upload_avatar');
+      }
+      //检查文件大小
+      if ($file_size > $max_size) {
+        $_SESSION['upload_avatar_error'] = "上传文件大小超过限制";
+        show('space.php?action=upload_avatar');
+      }
+      //获得文件扩展名
+      $temp_arr = explode(".", $file_name);
+      $file_ext = array_pop($temp_arr);
+      $file_ext = trim($file_ext);
+      $file_ext = strtolower($file_ext);
+      //检查扩展名
+      if (in_array($file_ext, $ext_arr) === false) {
+        $_SESSION['upload_avatar_error'] = "上传文件扩展名是不允许的扩展名";
+        show('space.php?action=upload_avatar');
+      }
+      //创建文件夹
+      $ymd = date("Ymd");
+      $save_path .= $ymd . "/";
+      $save_url .= $ymd . "/";
+      if (!file_exists($save_path)) {
+        mkdir($save_path);
+      }
+      //新文件名
+      $new_file_name = date("YmdHis") . '_' . rand(10000, 99999) . '.' . $file_ext;
+      //移动文件
+      $file_path = $save_path . $new_file_name;
+      if (move_uploaded_file($tmp_name, $file_path) === false) {
+        $_SESSION['upload_avatar_error'] = "上传文件失败";
+        show('space.php?action=upload_avatar');
+      }
+      @chmod($file_path, 0644);
+      $avatar_url = $save_url . $new_file_name;
+      //写入数据库
+      $arr = array(
+        'avatar' => $avatar_url,
+      );
+      $res = $db->update_by_id('user_profile',$_SESSION['uid'],$arr);
+      if(!$res) {
+        $_SESSION['upload_avatar_error'] = "写入数据库失败";
+      }
+      show('space.php?action=upload_avatar');
+    } else {
+      $res = $db->get_by_id('user_profile',$_SESSION['uid']);
+      $avatar_url = $res['avatar'];
+      $tpl->assign('avatar', $avatar_url);
+    }
+    $_SESSION['upload_avatar_error'] = isset($_SESSION['upload_avatar_error']) 
+      ? $_SESSION['upload_avatar_error'] : '';
+    $tpl->assign('user_session',$_SESSION); //用户信息
+    $tpl->assign('title','上传头像');
+    unset($_SESSION['upload_avatar_error']);
+    $tpl->display('space_upload_avatar.html');
+  break;
+  
 	default :	//错误页面
 		$tpl->assign('msg',array('title'=>'系统错误','content'=>'出错了',));
 		$tpl->display('msg.html');
-		die;
-    break;
+		exit;
+  break;
 }
 
+function alert($msg) {
+  header('Content-type: text/html; charset=UTF-8');
+  $json = new Services_JSON();
+  echo $json->encode(array('error' => 1, 'message' => $msg));
+  exit;
+}
