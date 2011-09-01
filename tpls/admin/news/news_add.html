@@ -85,6 +85,11 @@
 <script>
 	KE.show({
 		id : 'content',
+		//@todo 上线前修改 '/admin/upload.php?action=upload'
+		imageUploadJson : '/playace/system/controller/admin/upload.php?action=upload',
+		//@todo 上线前修改 /admin/file.php?action=manage
+    fileManagerJson : '/playace/system/controller/admin/file.php?action=manage',
+    allowFileManager : true,
 		afterCreate : function(id) {
 			KE.event.ctrl(document, 13, function() {
 				KE.sync(id);

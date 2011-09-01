@@ -30,5 +30,6 @@ $db = new mysql_db( $config['DB_HOST'],
 //导入帮助函数
 require_once HELPER_PATH . '/func.php';
 
-
+//后台news图片上传路径
+define('NEWS_UPLOAD_DIR', dirname(__FILE__) . '/../static/img/news/');
 /*EOF*/
