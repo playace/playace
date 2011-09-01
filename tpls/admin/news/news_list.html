@@ -1,0 +1,68 @@
+{include file="admin/admin_header.html"}
+
+	<div id="middle">
+		{include file="admin/admin_left.html"}
+
+		<div id="center-column">
+			<div class="top-bar">
+				<a href="news.php?action=add" class="button">ADD NEW </a>
+				<h1>资讯列表</h1>
+				<div class="breadcrumbs">
+					Homepage > <a href="news.php?action=list">返回列表</a>
+				</div>
+			</div><br />
+            <div class="select-bar">
+            	<label>
+                    <input type="text" name="textfield" />
+                </label>
+                <label>
+                    <input type="submit" name="Submit" value="Search" />
+                </label>
+            </div>
+			<div class="table">
+				<img src="../../../static/img/admin/admin_style/bg-th-left.gif" width="8" height="7" alt="" class="left" />
+				<img src="../../../static/img/admin/admin_style/bg-th-right.gif" width="7" height="7" alt="" class="right" />
+				<table class="listing" cellpadding="0" cellspacing="0">
+					<tr>
+						<th>序号</th>
+						<th class="first" width="177">标题</th>
+						<th>所属栏目</th>
+						<th>作者名</th>
+						<th>创建时间</th>
+						<th class="last">操作</th>
+					</tr>
+
+					{foreach from=$news_list item=item}
+					<tr>
+						<td>{$item.id}</td>
+						<td>{$item.title}</td>
+						<td>{$item.catname}</td>
+						<td>{$item.author_name}</td>
+						<td>{$item.create_time|date_format:"%Y-%m-%d %H:%M"}</td>
+
+						<td class="last">
+							<a href="news.php?action=view&news_id={$item.id}">
+                        		<img src="../../../static/img/admin/admin_style/view_icon.png" width="16" height="16" title="view" />
+                        	</a>
+
+							<a href="news.php?action=edit&news_id={$item.id}">
+								<img src="../../../static/img/admin/admin_style/edit_icon.png" width="16" height="16" title="edit"/>
+                        	</a>
+
+                        	<a href="news.php?action=del&news_id={$item.id}">
+								<img src="../../../static/img/admin/admin_style/del_icon.png" width="16" height="16" title="del"/>
+							</a>
+                        </td>
+					</tr>
+					{foreachelse}
+					<tr>
+						<td colspan="6">暂无信息</td>
+					</tr>
+					{/foreach}
+
+				</table>
+			</div>
+		</div>
+	</div>
+
+{include file="admin/admin_footer.html"}

@@ -1,0 +1,22 @@
+{* 头部用户工具栏 *}
+
+<div class="usertoolbar" id="usertoolbar">
+	<div class="usertoolbar_center">
+		<div class="usertoolbar_addtofavorite"><a href="" title="">将PlayAce.net添加到收藏夹</a></div>
+		{* 未登录状态 *}
+		{if $user_session.username == ''}
+		<div class="usertoolbar_info">您好！欢迎来到 playace.net &nbsp;|
+		&nbsp; <a href="login.php?action=login" title="请登录">请登录</a> &nbsp;|
+		&nbsp; <a href="register.php?action=register" title="免费注册">免费注册</a> &nbsp;|
+		&nbsp; <a href="" title="">帮助中心</a></div>
+		{/if}
+
+		{* 登录后状态 *}
+		{if $user_session.username != ''}
+		<div class="usertoolbar_info">欢迎，{$user_session.username} &nbsp;|
+		&nbsp; <a href="space_message.php?action=inbox" title="我的短消息">消息({$msg_num})</a> &nbsp;|
+		&nbsp; <a href="login.php?action=logout">退出</a> &nbsp;|
+		&nbsp; <a href="" title="">帮助中心</a></div>
+		{/if}
+	</div>
+</div>

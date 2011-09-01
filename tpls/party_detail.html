@@ -1,0 +1,262 @@
+{include file="moudle/moudle_header.html"}
+
+<body>
+<div class="inner_top" id="inner_top">
+
+  {* 顶部工具条 *}
+  	{include file="moudle/moudle_toolsbar.html"}
+  {* 顶部工具条 *}
+
+  <div class="logoandmenubar" id="logoandmenubar">
+	<div class="logo" id="logo"></div>
+
+	{* 导航栏 *}
+  		{include file="moudle/moudle_navigate.html"}
+    {* 导航栏 *}
+
+  </div>
+</div>
+
+<div class="inner_body" id="inner_body">
+	<div class="activity_title">
+		动感天地
+		<div class="add_activity_block">　<a href="party.php?action=add" title="发起新的活动">发起新的活动</a></div>
+	</div>
+	<div class="inner_content">
+		<div class="inner_content_left">
+			<div class="inner_content_left_bar">
+				<div class="inner_content_left_bar_title">{$party.title}
+				{* 此处仅创建者可见 *}
+				{if $party.create_uid == $user_session.uid}
+				<a href="party.php?action=edit&party_id={$party.id}" title="修改活动">修改活动</a>
+				{/if}
+			</div>
+			</div>
+			<div class="inner_content_left_activitydetailabstract">
+				<div class="activity_detail_icon">
+					<img src="{$party.thumb}"  width="128" height="128" border=0 alt="" title="">
+				</div>
+				<div class="activity_detail_abstract">
+					<div class="activity_detail_item">活动类型：
+						{if $party.kind == 0}
+							<font color="red">官方活动</font>
+						{elseif $party.kind == 1}
+							会员活动
+						{/if}
+					，由<a href="space_ta.php?action=ta_space&uid={$party.create_uid}" title="">{$party.create_username}</a>发起</div>
+					<div class="activity_detail_item">活动时间：{$party.start_time|date_format:"%Y-%m-%d %H:%M"} ~ {$party.end_time|date_format:"%Y-%m-%d %H:%M"}</div>
+					<div class="activity_detail_item">活动地点：{$party.address}</div>
+					<div class="activity_detail_item">联系方法：{$party.contact}</div>
+					<div class="activity_detail_item">报名截止：{$party.start_time|date_format:"%Y-%m-%d %H:%M"}
+						{if $party.start_time > $time}
+							<font color="red">（火热报名中...）</font>
+						{elseif $party.start_time < $time}
+							<font color="blue">（已经截止）</font>
+						{/if}
+					</div>
+					<div class="activity_detail_item">人数限制：{$party.number_limit}　　已经报名：{$party.participants}　　尚余名额：{$party.number_limit - $party.participants}</div>
+					<div class="activity_detail_actions">
+						{* 如果未登录，直接跳转到登录页面 *}
+						{if $user_session.username == ''}
+							<div class="activity_detail_action_baoming">
+								<a href="login.php?action=login" title="我要报名">我要报名</a>
+							</div>
+						{elseif $user_session.username != ''}
+							<div class="activity_detail_action_baoming">
+								<a href="participant.php?action=add&party_id={$party.id}&uid={$user_session.uid}" title="我要报名">我要报名</a>
+							</div>
+							<div class="activity_detail_action_comment">
+								<a href="#comment" title="">添加评论</a>
+							</div>
+						{/if}
+					</div>
+					<div class="activity_detail_status">人气({$party.views})　评论({$party.comments})</div>
+				</div>
+			</div>
+			<div class="inner_content_left_subbar">
+				<div class="inner_content_left_subbar_title">活动安排</div>
+			</div>
+			<div class="inner_content_left_content">
+				{$party.description}
+			</div>
+			<div class="inner_content_left_subbar">
+				<div class="inner_content_left_subbar_title">参加人员 ({$participant_passed_num}人)</div>
+			</div>
+			<div class="inner_content_left_content">
+
+				{* 参加人员 *}
+				{foreach from=$participant_passed item=item}
+				<div class="activity_baoming_user_iconblock">
+					<div class="activity_baoming_user_icon">
+						<a href="ta_space.php?action=ta_space&uid={$item.uid}">
+							<img src="{$item.avatar}" width="54" height="54" border=0 alt="" title="">
+						</a>
+					</div>
+					<div class="activity_baoming_user_text">
+						<a href="ta_space.php?action=ta_space&uid={$item.id}">{$item.username}</a>
+						{* 此处仅创建者可见 *}
+						{if $party.create_uid == $user_session.uid}
+						<div class="activity_baoming_user_text">
+							<a href="participant.php?action=edit&party_id={$party.id}&uid={$item.uid}&is_passed=2">拒绝</a>
+						</div>
+						{/if}
+						{* 此处仅创建者可见 *}
+					</div>
+				</div>
+				{/foreach}
+				{* 参加人员 *}
+
+			</div>
+
+			{* 此处仅创建者可见 *}
+			{if $party.create_uid == $user_session.uid}
+
+			{* 待审批人员 *}
+			<div class="inner_content_left_subbar">
+				<div class="inner_content_left_subbar_title">待审批人员 ({$participant_auditing_num}人)</div>
+			</div>
+			<div class="inner_content_left_content">
+
+				{* 待审批人员 *}
+				{foreach from=$participant_auditing item=item}
+				<div class="activity_baoming_user_iconblock">
+					<div class="activity_baoming_user_icon">
+						<a href="ta_space.php?action=ta_space&uid={$item.uid}">
+							<img src="{$item.avatar}" width="54" height="54" border=0 alt="" title="">
+						</a>
+					</div>
+					<div class="activity_baoming_user_text">
+						<a href="ta_space.php?action=ta_space&uid={$item.id}" title="{$item.username}">{$item.username}</a>
+					</div>
+					<div class="activity_baoming_user_text">
+						<a href="participant.php?action=edit&party_id={$party.id}&uid={$item.uid}&is_passed=1">通过</a>
+						<a href="participant.php?action=edit&party_id={$party.id}&uid={$item.uid}&is_passed=2">拒绝</a>
+					</div>
+				</div>
+				{/foreach}
+				{* 待审批人员 *}
+
+			</div>
+
+			{* 已拒绝人员 *}
+			<div class="inner_content_left_subbar">
+				<div class="inner_content_left_subbar_title">已拒绝人员 ({$participant_refuse_num}人)</div>
+			</div>
+			<div class="inner_content_left_content">
+
+				{* 已拒绝人员 *}
+				{foreach from=$participant_refuse item=item}
+				<div class="activity_baoming_user_iconblock">
+					<div class="activity_baoming_user_icon">
+						<a href="ta_space.php?action=ta_space&uid={$item.uid}" title="">
+							<img src="{$item.avatar}" width="54" height="54" border=0 alt="" title="">
+						</a>
+					</div>
+					<div class="activity_baoming_user_text">
+						<a href="ta_space.php?action=ta_space&uid={$item.id}" title="">{$item.username}</a>
+					</div>
+					<div class="activity_baoming_user_text">
+						<a href="participant.php?action=edit&party_id={$party.id}&uid={$item.uid}&is_passed=1">通过</a>
+					</div>
+				</div>
+				{/foreach}
+				{* 已拒绝人员 *}
+
+			</div>
+			{/if}
+			{* 此处仅创建者可见 *}
+
+			<div class="inner_content_left_subbar">
+				<div class="inner_content_left_subbar_title"><!--活动图片--></div>
+			</div>
+			<div class="inner_content_left_content">
+				<!--<div class="activity_photo_block"><a href="" title=""><img src="../../static/img/demoicon/12801.jpg" border=0 alt="" title="" width="120" height="90"></a></div>
+				<div class="activity_photo_block"><a href="" title=""><img src="../../static/img/demoicon/12802.jpg" border=0 alt="" title="" width="120" height="90"></a></div>
+				<div class="activity_photo_block"><a href="" title=""><img src="../../static/img/demoicon/12804.jpg" border=0 alt="" title="" width="120" height="90"></a></div>
+				<div class="activity_photo_block"><a href="" title=""><img src="../../static/img/demoicon/12811.jpg" border=0 alt="" title="" width="120" height="90"></a></div>
+				<div class="activity_photo_block"><a href="" title=""><img src="../../static/img/demoicon/12813.jpg" border=0 alt="" title="" width="120" height="90"></a></div>-->
+			</div>
+			<div class="inner_content_left_subbar">
+				<div class="inner_content_left_subbar_title">活动评论</div>
+			</div>
+			<div class="inner_content_left_content">
+
+				{* 活动评论 *}
+				{foreach from=$comment item=item}
+				<div class="activity_comment_line">
+					<div class="activity_comment_icon">
+						<a href="space_ta.php?action=ta_space&uid={$item.uid}" title="">
+							<img src="{$item.avatar}" width="54" height="54" border=0 alt="" title="">
+						</a>
+					</div>
+					<div class="activity_comment_text">
+						<a href="space_ta.php?action=ta_space&uid={$item.uid}" title="">{$item.username}</a>　<span class="activity_comment_time">{$item.create_time|date_format:"%Y-%m-%d %H:%M"}</span><br>
+						{$item.content}
+					</div>
+				</div>
+				{/foreach}
+				{* 活动评论 *}
+
+			</div>
+
+			{* 未登录不能发表评论 *}
+			{if $user_session.username != ''}
+				<form action="comment.php?action=add" method="POST">
+				<input type="hidden" name="class" value="2">	{* 评论类型 *}
+				<input type="hidden" name="topic_id" value="{$party.id}">	{* 评论主题id *}
+				<input type="hidden" name="parent_id" value="0">	{* 回复评论id，0表示不是回复 *}
+				<div class="inner_content_left_subbar">
+					<div class="inner_content_left_subbar_title"><a name="comment"></a>发表评论</div>
+				</div>
+				<div class="inner_content_left_content">
+					<textarea id="comment_content" name="content" style="width:650px;height:150px;visibility:hidden;" class="inner_textarea"></textarea>
+				</div>
+				<div class="inner_content_left_content">
+					<input class="inner_btn" type="submit" value="提交评论">
+				</div>
+				</form>
+			{/if}
+			{* 未登录不能发表评论 *}
+
+		</div>
+		<div class="inner_content_right">
+			{*
+			<div class="inner_content_right_changguanbar">　　场馆介绍</div>
+			<div class="activity_right_changguan">
+				<img src="../../static/img/demoicon/10.gif" border=0 alt="" title="" align=left>
+				<a href="" title="">杨浦体育馆</a><br>
+				我成长于70-80年代的香港，那时候，电视主题曲都脍炙人口，除了因为当时的娱乐不多外，亦因为那些主题曲都比今天的认真 – 认真的配合剧情，都能为剧集作点睛。我成长于70-80年代的香港，那时候，电视主题曲都脍炙人口，除了因为当时的娱乐不多外，亦因为那些主题曲都比今天的认真 – 认真的配合剧情，都能为剧集作点睛。
+			</div>
+			<div class="inner_content_right_mapbar">　　地图线路</div>
+			<div class="activity_right_map"></div>
+			*}
+		</div>
+	</div>
+</div>
+
+<div class="index_bottom_blank"></div>
+
+{* 帮助中心 *}
+	{include file="moudle/moudle_helpcenter.html"}
+{* 帮助中心 *}
+
+{* footer *}
+	{include file="moudle/moudle_footer.html"}
+{* footer *}
+
+{* kindeditor 简单模式 *}
+{literal}
+<script charset="utf-8" src="../../static/js/kindeditor/kindeditor.js"></script>
+<script>
+	KE.show({
+		id : 'comment_content',
+		resizeMode : 1,
+		allowPreviewEmoticons : false,
+		allowUpload : false,
+		items : [
+	    'textcolor', '|', 'bgcolor', 'bold', 'italic', 'underline', '|', 'emoticons',
+	    ]
+	});
+</script>
+{/literal}
+{* kindeditor 简单模式 *}

@@ -1,0 +1,136 @@
+{include file="moudle/moudle_header.html"}
+
+<body>
+<div class="inner_top" id="inner_top">
+
+  {* 顶部工具条 *}
+  	{include file="moudle/moudle_toolsbar.html"}
+  {* 顶部工具条 *}
+
+  <div class="logoandmenubar" id="logoandmenubar">
+	<div class="logo" id="logo"></div>
+
+	{* 导航栏 *}
+  		{include file="moudle/moudle_navigate.html"}
+    {* 导航栏 *}
+
+  </div>
+</div>
+
+<div class="inner_body" id="inner_body">
+	<div class="uc_title">
+		我的地盘
+	</div>
+	<div class="inner_content">
+		<div class="inner_content_left">
+
+			{* 个人信息 *}
+		  		{include file="moudle/moudle_space_userprofile.html"}
+		    {* 个人信息 *}
+
+			{* 个人中心导航栏 *}
+		  		{include file="moudle/moudle_space_nav.html"}
+		    {* 个人中心导航栏 *}
+
+			<div class="inner_content_left_subbar">
+				<div class="inner_content_left_subbar_title">个人设置 - 基本资料</div>
+			</div>
+			<div class="uc_linenodash">
+				<div class="uc_user_setupmenubar">
+					<a href="space.php?action=setup_profile" title="修改基本资料"><b>基本资料</b></a> |
+					<!--<a href="uc_uploadimg.html" title="更新头像">更新头像</a> |-->
+					<a href="space.php?action=setup_password" title="修改密码">修改密码</a>
+				</div>
+			</div>
+			<div class="inner_subtitle_sepaline"></div>
+			<form action="space.php?action=setup_profile" method="POST">
+			<input type="hidden" name="uid" value="{$user_session.uid}">
+			<div class="inner_form_commonbar">
+				<div class="inner_form_commonbar_text">用户名</div>
+				<div class="inner_form_commonbar_formelement">
+					<input class="inner_input_s2" type="text" name="username" value="{$user.username}">
+				</div>
+			</div>
+			<div class="inner_form_commonbar">
+				<div class="inner_form_commonbar_text">性别</div>
+				<div class="inner_form_commonbar_formelement">
+					<input type="radio" name="sex" value="帅哥" {if $user_profile.sex == '帅哥'}checked{/if} />帅哥
+					<input type="radio" name="sex" value="美女" {if $user_profile.sex == '美女'}checked{/if} />美女
+					<input type="radio" name="sex" value="保密" {if $user_profile.sex == '保密'}checked{/if} />保密
+				</div>
+			</div>
+			<div class="inner_form_commonbar">
+				<div class="inner_form_commonbar_text">球龄</div>
+				<div class="inner_form_commonbar_formelement">
+					<input class="inner_input_s2" type="text" name="tennis_age" value="{$user_profile.tennis_age}">
+				</div>
+			</div>
+			<div class="inner_form_commonbar">
+				<div class="inner_form_commonbar_text">打球区域</div>
+				<div class="inner_form_commonbar_formelement">
+					<input class="inner_input_s2" type="text" name="tennis_area" value="{$user_profile.tennis_area}">
+				</div>
+			</div>
+			<div class="inner_form_commonbar">
+				<div class="inner_form_commonbar_text">网球水平</div>
+				<div class="inner_form_commonbar_formelement">
+					<input class="inner_input_s2" type="text" name="tennis_level_own" value="{$user_profile.tennis_level_own}">
+				</div>
+			</div>
+			<div class="inner_form_commonbar">
+				<div class="inner_form_commonbar_text">偶像</div>
+				<div class="inner_form_commonbar_formelement">
+					<input class="inner_input_s2" type="text" name="idol" value="{$user_profile.idol}">
+				</div>
+			</div>
+			<div class="inner_form_commonbar">
+				<div class="inner_form_commonbar_text">生日</div>
+				<div class="inner_form_commonbar_formelement">
+					<input class="inner_input_s2" type="text" name="birthday" value="{$user_profile.birthday}">
+				</div>
+			</div>
+			<div class="inner_form_commonbar">
+				<div class="inner_form_commonbar_text">星座</div>
+				<div class="inner_form_commonbar_formelement">
+					<select name="constellation">
+						<option value="请选择" {if $user_profile.constellation == ''}selected{/if}>请选择</option>
+						<option value="白羊" {if $user_profile.constellation == '白羊'}selected{/if}>白羊</option>
+						<option value="金牛" {if $user_profile.constellation == '金牛'}selected{/if}>金牛</option>
+						<option value="双子" {if $user_profile.constellation == '双子'}selected{/if}>双子</option>
+						<option value="巨蟹" {if $user_profile.constellation == '巨蟹'}selected{/if}>巨蟹</option>
+						<option value="狮子" {if $user_profile.constellation == '狮子'}selected{/if}>狮子</option>
+						<option value="处女" {if $user_profile.constellation == '处女'}selected{/if}>处女</option>
+						<option value="天秤" {if $user_profile.constellation == '天秤'}selected{/if}>天秤</option>
+						<option value="天蝎" {if $user_profile.constellation == '天蝎'}selected{/if}>天蝎</option>
+						<option value="射手" {if $user_profile.constellation == '射手'}selected{/if}>射手</option>
+						<option value="魔羯" {if $user_profile.constellation == '魔羯'}selected{/if}>魔羯</option>
+						<option value="水瓶" {if $user_profile.constellation == '水瓶'}selected{/if}>水瓶</option>
+						<option value="双鱼" {if $user_profile.constellation == '双鱼'}selected{/if}>双鱼</option>
+					</select>
+				</div>
+			</div>
+			<div class="inner_form_commonbar">
+				<div class="inner_form_commonbar_text"></div>
+				<div class="inner_form_commonbar_formelement">
+					<input class="inner_btn" type="submit" value="提交">
+				</div>
+			</div>
+			</form>
+		</div>
+		<div class="inner_content_right">
+			<div class="inner_content_right_visitorsbar">　　最近来访</div>
+
+			{* 最近来访 *}
+				{include file="moudle/moudle_space_visits.html"}
+			{* 最近来访 *}
+
+		</div>
+	</div>
+</div>
+
+<div class="index_bottom_blank"></div>
+
+{* footer *}
+	{include file="moudle/moudle_footer.html"}
+{* footer *}
+

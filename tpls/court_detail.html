@@ -1,0 +1,165 @@
+{include file="moudle/moudle_header.html"}
+
+<body>
+<div class="inner_top" id="inner_top">
+
+  {* 顶部工具条 *}
+  	{include file="moudle/moudle_toolsbar.html"}
+  {* 顶部工具条 *}
+
+  <div class="logoandmenubar" id="logoandmenubar">
+	<div class="logo" id="logo"></div>
+
+	{* 导航栏 *}
+  		{include file="moudle/moudle_navigate.html"}
+    {* 导航栏 *}
+
+  </div>
+</div>
+
+<div class="inner_body" id="inner_body">
+	<div class="court_title">
+		竞技场
+	</div>
+	<div class="inner_content">
+		<div class="inner_content_left">
+			<div class="inner_content_left_bar">
+				<div class="inner_content_left_bar_title">{$court_info.name}</div>
+			</div>
+			<div class="inner_content_left_courtdetailabstract">
+				<div class="court_detail_icon"><img src="{$court_info.thumb}" width="128" height="128" border=0 alt="" title=""></div>
+				<div class="court_detail_abstract">
+					<div class="court_detail_item">所属区域：上海市 {$court_info.area}</div>
+					<div class="court_detail_item">场馆地址：{$court_info.address}</div>
+					<div class="court_detail_item">场地分类：{$court_info.court_type}</div>
+					<div class="court_detail_item">联系电话：{$court_info.contact}</div>
+					<div class="court_detail_item">营业时间：{$court_info.business_hour}</div>
+					<div class="court_detail_item">公交信息：{$court_info.traffic}</div>
+					<div class="court_detail_actions">
+
+						{* 如果未登录，直接跳转到登录页面 *}
+						{if $user_session.username == ''}
+							<div class="court_detail_action_comment">
+								<a href="login.php?action=login" title="请登录">请先登录</a>
+							</div>
+						{elseif $user_session.username != ''}
+							<div class="court_detail_action_comment"><a href="#comment" title="">我要评论</a></div>
+						{/if}
+
+					</div>
+					<div class="court_detail_status">人气({$court_info.views})　评论({$court_info.comments})</div>
+				</div>
+			</div>
+			<div class="inner_content_left_subbar">
+				<div class="inner_content_left_subbar_title">{$court_info.name}场地介绍</div>
+			</div>
+			<div class="inner_content_left_content">
+				{$court_info.account}
+			</div>
+			<div class="inner_content_left_subbar">
+				<div class="inner_content_left_subbar_title">玩玩评价</div>
+			</div>
+			<div class="inner_content_left_content">
+				{$court_info.assessment}
+			</div>
+			<div class="inner_content_left_subbar">
+				<div class="inner_content_left_subbar_title">参考价目表</div>
+			</div>
+			<div class="inner_content_left_content">
+
+				{* 价目表 *}
+					{$court_info.cost_table}
+				{* 价目表 *}
+
+			</div>
+			<div class="inner_content_left_subbar">
+				<div class="inner_content_left_subbar_title"><!--场馆图片--></div>
+			</div>
+			<div class="inner_content_left_content">
+				<!--<div class="court_photo_block"><a href="" title=""><img src="../../static/img/demoicon/12801.jpg" border=0 alt="" title="" width="120" height="90"></a></div>
+				<div class="court_photo_block"><a href="" title=""><img src="../../static/img/demoicon/12802.jpg" border=0 alt="" title="" width="120" height="90"></a></div>
+				<div class="court_photo_block"><a href="" title=""><img src="../../static/img/demoicon/12804.jpg" border=0 alt="" title="" width="120" height="90"></a></div>
+				<div class="court_photo_block"><a href="" title=""><img src="../../static/img/demoicon/12811.jpg" border=0 alt="" title="" width="120" height="90"></a></div>
+				<div class="court_photo_block"><a href="" title=""><img src="../../static/img/demoicon/12813.jpg" border=0 alt="" title="" width="120" height="90"></a></div>-->
+			</div>
+			<div class="inner_content_left_subbar">
+				<div class="inner_content_left_subbar_title">评论</div>
+			</div>
+			<div class="inner_content_left_content">
+
+				{* 评论 *}
+				{foreach from=$comment item=item}
+				<div class="court_comment_line">
+					<div class="court_comment_icon">
+						<a href="space_ta.php?action=ta_space&uid={$item.uid}">
+							<img src="{$item.avatar}" width="54" height="54" border=0 alt="" title="">
+						</a>
+					</div>
+					<div class="court_comment_text">
+						<a href="space_ta.php?action=ta_space&uid={$item.uid}">{$item.username}</a>　
+						<span class="activity_comment_time">{$item.create_time|date_format:"%Y-%m-%d %H:%M"}</span><br>
+						{$item.content}
+					</div>
+				</div>
+				{foreachelse}
+					暂无评论
+				{/foreach}
+				{* 评论 *}
+
+			</div>
+
+			{* 未登录不能发表评论 *}
+			{if $user_session.username != ''}
+				<form action="comment.php?action=add" method="POST">
+				<input type="hidden" name="class" value="1">	{* 评论类型 1:场地 *}
+				<input type="hidden" name="topic_id" value="{$court_info.id}">	{* 评论主题id *}
+				<input type="hidden" name="parent_id" value="0">	{* 回复评论id，0表示不是回复 *}
+				<div class="inner_content_left_subbar">
+					<div class="inner_content_left_subbar_title"><a name="comment"></a>发表评论</div>
+				</div>
+				<div class="inner_content_left_content">
+					<textarea id="comment_content" name="content" style="width:650px;height:150px;visibility:hidden;" class="inner_textarea"></textarea>
+				</div>
+				<div class="inner_content_left_content">
+					<input class="inner_btn" type="submit" value="提交评论">
+				</div>
+				</form>
+			{/if}
+
+		</div>
+		<div class="inner_content_right">
+			<div class="inner_content_right_mapbar">　　地图线路</div>
+			<div class="activity_right_map">
+				<img src="{$court_info.map}" width="225" height="225" border=0 alt="" title="">
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div class="index_bottom_blank"></div>
+
+{* 帮助中心 *}
+	{include file="moudle/moudle_helpcenter.html"}
+{* 帮助中心 *}
+
+{* footer *}
+	{include file="moudle/moudle_footer.html"}
+{* footer *}
+
+{* kindeditor 简单模式 *}
+{literal}
+<script charset="utf-8" src="../../static/js/kindeditor/kindeditor.js"></script>
+<script>
+	KE.show({
+		id : 'comment_content',
+		resizeMode : 1,
+		allowPreviewEmoticons : false,
+		allowUpload : false,
+		items : [
+	    'textcolor', '|', 'bgcolor', 'bold', 'italic', 'underline', '|', 'emoticons',
+	    ]
+	});
+</script>
+{/literal}
+{* kindeditor 简单模式 *}

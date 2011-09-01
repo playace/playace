@@ -1,0 +1,20 @@
+{* 最近来访 *}
+<div class="inner_content_right_visitors">
+
+	{foreach from=$visits item=item}
+	<div class="inner_content_right_visitors_block">
+		<div class="inner_content_right_visitors_block_icon">
+			<a href="space_ta.php?action=ta_space&uid={$item.uid}" title="{$item.username}">
+				<img src="{$item.avatar}" width="54" height="54" border=0 alt="" title="">
+			</a>
+		</div>
+		<div class="inner_content_right_visitors_block_text">
+			<a href="space_ta.php?action=ta_space&uid={$item.uid}" title="{$item.username}">{$item.username}</a>
+		</div>
+		<div class="inner_content_right_visitors_block_time">{$item.visit_time|date_format:"%m-%d %H:%M"}</div>
+	</div>
+	{foreachelse}
+		没有来访者
+	{/foreach}
+</div>
+{* 最近来访 *}

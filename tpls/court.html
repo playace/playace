@@ -1,0 +1,131 @@
+{include file="moudle/moudle_header.html"}
+
+<body>
+<div class="inner_top" id="inner_top">
+
+  {* 顶部工具条 *}
+  	{include file="moudle/moudle_toolsbar.html"}
+  {* 顶部工具条 *}
+
+  <div class="logoandmenubar" id="logoandmenubar">
+	<div class="logo" id="logo"></div>
+
+	{* 导航栏 *}
+  		{include file="moudle/moudle_navigate.html"}
+    {* 导航栏 *}
+
+  </div>
+</div>
+
+<div class="inner_body" id="inner_body">
+	<div class="court_title">
+		竞技场
+	</div>
+	<div class="inner_content">
+		<div class="inner_content_left">
+			<div class="keyselections">
+				<div class="keyselections_line">
+					<div class="keyselections_text">区域</div>
+					<div class="keyselections_content">
+						<a href="court.php" title="全部区域">全部区域</a>
+
+						{* 区域 *}
+						{foreach from=$area item=item}
+							<a href="court.php?action=filter&area_id={$item.id}">{$item.area}</a>
+						{/foreach}
+
+					</div>
+				</div>
+				<div class="keyselections_line">
+					<div class="keyselections_text">类型</div>
+					<div class="keyselections_content">
+						<a href="court.php" title="全部类型">全部类型</a>
+
+						{* 类型 *}
+						{foreach from=$court_type item=item}
+							<a href="court.php?action=filter&court_type={$item.type}">{$item.type}</a>
+						{/foreach}
+
+					</div>
+				</div>
+				<div class="keyselections_line">
+					<div class="keyselections_text">搜索</div>
+					<div class="keyselections_content">
+						<form action="court.php?action=search" method="POST">
+						<input class="keyselection_input" maxLength=40 type="text" name="keywords" id="keywords" value="" onblur="fEvent('blur',this);" onfocus="fEvent('focus',this);" onmouseover="fEvent('mouseover',this)" onmouseout="fEvent('mouseout',this)">
+						<input class="keyselection_btn" type="submit" value="搜索">
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="inner_adbanner_690_080">
+				<a href="" title=""><img src="../../static/img/ad2.jpg" width="690" height="80" border=0 alt="" title="" ></a>
+			</div>
+			<div class="inner_content_left_bar">
+				<div class="inner_content_left_bar_title">竞技场信息</div>
+			</div>
+
+			{* 场地信息 *}
+			{foreach from=$court_list item=item}
+			<div class="inner_content_left_maincontentline">
+				<div class="court_main_icon">
+					<img src="{$item.thumb}" width="128" height="128" border=0 alt="" title="">
+				</div>
+				<div class="court_main_content">
+					<div class="court_main_title">
+						<a href="court.php?action=view&court_id={$item.id}" title="{$item.name}">{$item.name}</a>
+					</div>
+					<div class="court_main_detail">场馆地址：{$item.address}</div>
+					<div class="court_main_detail">联系电话：{$item.contact}</div>
+					<div class="court_main_detail">价格：{$item.price}</font></div>
+					{*<div class="court_main_detail"><font color="red">会员价：{$item.vip_price}</font></div>*}
+					<div class="court_main_detail">公交信息：{$item.traffic}</div>
+					<div class="court_main_links">
+						<a href="court.php?action=view&court_id={$item.id}" title="">人气({$item.views})</a>　<a href="court.php?action=view&court_id={$item.id}#comment" title="">评论({$item.comments})</a>
+					</div>
+				</div>
+			</div>
+			{foreachelse}
+				没有相关信息
+			{/foreach}
+			{* 场地信息 *}
+
+		</div>
+		<div class="inner_content_right">
+			<div class="inner_content_right_commentbar">　　竞技场评论</div>
+
+			{* 场地评论 *}
+			{foreach from=$court_comment item=item}
+			<div class="inner_content_right_comment" id="inner_content_right_comment">
+				<div id="" class="inner_content_right_commentline">
+					<div class="inner_content_right_commentline_icon">
+						<a href="space_ta.php?action=ta_space&uid={$item.uid}">
+							<img src="{$item.avatar}" width="54" height="54" border=0 alt="" title="">
+						</a>
+					</div>
+					<div class="inner_content_right_commentline_text">
+						<div style="height:48px;overflow:hidden">
+							<a href="space_ta.php?action=ta_space&uid={$item.uid}">{$item.username}</a>：{$item.content}
+						</div>
+						<span class="inner_content_right_commentline_time">{$item.create_time|date_format:"%m-%d %H:%M"}</span></div>
+				</div>
+			</div>
+			{foreachelse}
+				没有相关信息
+			{/foreach}
+			{* 场地评论 *}
+
+		</div>
+	</div>
+</div>
+
+<div class="index_bottom_blank"></div>
+
+{* 帮助中心 *}
+	{include file="moudle/moudle_helpcenter.html"}
+{* 帮助中心 *}
+
+{* footer *}
+	{include file="moudle/moudle_footer.html"}
+{* footer *}
+

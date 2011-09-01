@@ -1,0 +1,203 @@
+{include file="moudle/moudle_header.html"}
+
+<body>
+<div class="inner_top" id="inner_top">
+
+  {* 顶部工具条 *}
+  	{include file="moudle/moudle_toolsbar.html"}
+  {* 顶部工具条 *}
+
+  <div class="logoandmenubar" id="logoandmenubar">
+	<div class="logo" id="logo"></div>
+
+	{* 导航栏 *}
+  		{include file="moudle/moudle_navigate.html"}
+    {* 导航栏 *}
+
+  </div>
+</div>
+
+<div class="inner_body" id="inner_body">
+	<div class="news_title">
+		金玉良言
+	</div>
+	<div class="inner_content">
+		<div class="inner_content_left">
+
+			{* 分类1 *}
+			<div class="inner_content_left_bar">
+				<div class="inner_content_left_bar_title">{$category_1.catname}</div>
+				<div class="inner_content_left_bar_more"><a href="news.php?action=list&catid={$category_1.id}">» 更多</a></div>
+			</div>
+			<div class="inner_content_left_maincontentline">
+				<div class="news_icon">
+					<img src="../../static/img/demoicon/{$category_1.catname}.jpg" width="134" height="134" border="0" alt="" title="">
+				</div>
+				<div class="news_content_short">
+
+					{foreach from=$news_1 item=item}
+					<div class="news_line_short">
+						<a href="news.php?action=view&news_id={$item.id}" title="{$item.title}">{$item.title}</a>
+					<span class="news_time">{$item.create_time|date_format:"%Y-%m-%d"}</span></div>
+					{foreachelse}
+						没有信息
+					{/foreach}
+
+				</div>
+			</div>
+			{* 分类1 *}
+
+			{* 分类2 *}
+			<div class="inner_content_left_bar">
+				<div class="inner_content_left_bar_title">{$category_2.catname}</div>
+				<div class="inner_content_left_bar_more"><a href="news.php?action=list&catid={$category_2.id}">» 更多</a></div>
+			</div>
+			<div class="inner_content_left_maincontentline">
+				<div class="news_icon">
+					<img src="../../static/img/demoicon/{$category_2.catname}.jpg" width="134" height="134" border="0" alt="" title="">
+				</div>
+				<div class="news_content_short">
+
+					{foreach from=$news_2 item=item}
+					<div class="news_line_short">
+						<a href="news.php?action=view&news_id={$item.id}" title="{$item.title}">{$item.title}</a>
+					<span class="news_time">{$item.create_time|date_format:"%Y-%m-%d"}</span></div>
+					{foreachelse}
+						没有信息
+					{/foreach}
+
+				</div>
+			</div>
+			{* 分类2 *}
+
+			{* 分类3 *}
+			<div class="inner_content_left_bar">
+				<div class="inner_content_left_bar_title">{$category_3.catname}</div>
+				<div class="inner_content_left_bar_more"><a href="news.php?action=list&catid={$category_3.id}">» 更多</a></div>
+			</div>
+			<div class="inner_content_left_maincontentline">
+				<div class="news_icon">
+					<img src="../../static/img/demoicon/{$category_3.catname}.jpg" width="134" height="134" border="0" alt="" title="">
+				</div>
+				<div class="news_content_short">
+
+					{foreach from=$news_3 item=item}
+					<div class="news_line_short">
+						<a href="news.php?action=view&news_id={$item.id}" title="{$item.title}">{$item.title}</a>
+					<span class="news_time">{$item.create_time|date_format:"%Y-%m-%d"}</span></div>
+					{foreachelse}
+						没有信息
+					{/foreach}
+
+				</div>
+			</div>
+			{* 分类3 *}
+
+			{* 分类4 *}
+			<div class="inner_content_left_bar">
+				<div class="inner_content_left_bar_title">{$category_4.catname}</div>
+				<div class="inner_content_left_bar_more"><a href="news.php?action=list&catid={$category_4.id}">» 更多</a></div>
+			</div>
+			<div class="inner_content_left_maincontentline">
+				<div class="news_icon">
+					<img src="../../static/img/demoicon/{$category_4.catname}.jpg" width="134" height="134" border="0" alt="" title="">
+				</div>
+				<div class="news_content_short">
+
+					{foreach from=$news_4 item=item}
+					<div class="news_line_short">
+						<a href="news.php?action=view&news_id={$item.id}" title="{$item.title}">{$item.title}</a>
+					<span class="news_time">{$item.create_time|date_format:"%Y-%m-%d"}</span></div>
+					{foreachelse}
+						没有信息
+					{/foreach}
+
+				</div>
+			</div>
+			{* 分类4 *}
+
+			{* 分类5 *}
+			<div class="inner_content_left_bar">
+				<div class="inner_content_left_bar_title">{$category_5.catname}</div>
+				<div class="inner_content_left_bar_more"><a href="news.php?action=list&catid={$category_5.id}">» 更多</a></div>
+			</div>
+			<div class="inner_content_left_maincontentline">
+				<div class="news_icon">
+					<img src="../../static/img/demoicon/{$category_5.catname}.jpg" width="134" height="134" border="0" alt="" title="">
+				</div>
+				<div class="news_content_short">
+
+					{foreach from=$news_5 item=item}
+					<div class="news_line_short">
+						<a href="news.php?action=view&news_id={$item.id}" title="{$item.title}">{$item.title}</a>
+					<span class="news_time">{$item.create_time|date_format:"%Y-%m-%d"}</span></div>
+					{foreachelse}
+						没有信息
+					{/foreach}
+
+				</div>
+			</div>
+			{* 分类5 *}
+
+			{* 分类6 *}
+			<div class="inner_content_left_bar">
+				<div class="inner_content_left_bar_title">{$category_6.catname}</div>
+				<div class="inner_content_left_bar_more"><a href="news.php?action=list&catid={$category_6.id}">» 更多</a></div>
+			</div>
+			<div class="inner_content_left_maincontentline">
+				<div class="news_icon">
+					<img src="../../static/img/demoicon/{$category_6.catname}.jpg" width="134" height="134" border="0" alt="" title="">
+				</div>
+				<div class="news_content_short">
+
+					{foreach from=$news_6 item=item}
+					<div class="news_line_short">
+						<a href="news.php?action=view&news_id={$item.id}" title="{$item.title}">{$item.title}</a>
+					<span class="news_time">{$item.create_time|date_format:"%Y-%m-%d"}</span></div>
+					{foreachelse}
+						没有信息
+					{/foreach}
+
+				</div>
+			</div>
+			{* 分类6 *}
+
+		</div>
+		<div class="inner_content_right">
+			<div class="inner_content_right_commentbar">　　最新评论</div>
+
+			{* 最新评论 *}
+			{foreach from=$news_comment item=item}
+			<div class="inner_content_right_comment" id="inner_content_right_comment">
+				<div id="" class="inner_content_right_commentline">
+					<div class="inner_content_right_commentline_icon">
+						<a href="space_ta.php?action=ta_space&uid={$item.uid}">
+							<img src="{$item.avatar}" width="54" height="54" border=0 alt="" title="">
+						</a>
+					</div>
+					<div class="inner_content_right_commentline_text">
+						<div style="height:48px;overflow:hidden">
+							<a href="space_ta.php?action=ta_space&uid={$item.uid}">{$item.username}</a>：{$item.content}
+						</div>
+						<span class="inner_content_right_commentline_time">{$item.create_time|date_format:"%m-%d %H:%M"}</span></div>
+				</div>
+			</div>
+			{foreachelse}
+				没有相关信息
+			{/foreach}
+			{* 最新评论 *}
+
+		</div>
+	</div>
+</div>
+
+<div class="index_bottom_blank"></div>
+
+{* 帮助中心 *}
+	{include file="moudle/moudle_helpcenter.html"}
+{* 帮助中心 *}
+
+{* footer *}
+	{include file="moudle/moudle_footer.html"}
+{* footer *}
+

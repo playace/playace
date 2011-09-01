@@ -1,0 +1,120 @@
+{include file="admin/admin_header.html"}
+
+	<div id="middle">
+		{include file="admin/admin_left.html"}
+
+		<div id="center-column">
+			<div class="top-bar">
+				<h1>场地详情</h1>
+				<div class="breadcrumbs">
+					<a href="login.php?action=admin_index">Homepage</a> > <a href="court.php?action=list">返回列表</a>
+				</div>
+			</div><br />
+
+		    <div class="table">
+				<img src="../../../static/img/admin/admin_style/bg-th-left.gif" width="8" height="7" alt="" class="left" />
+				<img src="../../../static/img/admin/admin_style/bg-th-right.gif" width="7" height="7" alt="" class="right" />
+				<table class="listing form" cellpadding="0" cellspacing="0">
+					<tr>
+						<th class="full" colspan="2">场地</th>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>场地名</strong></td>
+						<td class="last">{$court.name}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>场地类型，用逗号分隔</strong></td>
+						<td class="last">{$court.court_type}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>地址</strong></td>
+						<td class="last">{$court.address}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>周边交通</strong></td>
+						<td class="last">{$court.traffic}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>联系电话</strong></td>
+						<td class="last">{$court.contact}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>所属区域</strong></td>
+						<td class="last">{$court.area}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>营业时间</strong></td>
+						<td class="last">{$court.business_hour}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>价格</strong></td>
+						<td class="last">{$court.price}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>会员价</strong></td>
+						<td class="last">{$court.vip_price}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>查看数</strong></td>
+						<td class="last">{$court.views}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>评论数</strong></td>
+						<td class="last">{$court.comments}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>推荐指数，10-1 降序排列，0为不推荐</strong></td>
+						<td class="last">{$court.recommend}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>价目表</strong></td>
+						<td class="last">{$court.cost_table}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>场馆地图</strong></td>
+						<td class="last"><img src="{$court.map}" width="128" height="128"></td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>缩略图</strong></td>
+						<td class="last"><img src="{$court.thumb}" width="128" height="128"></td>
+					</tr>
+					<tr class="bg">
+						<td class="first" width="172"><strong>简介</strong></td>
+						<td class="last">{$court.description}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>状态，0：正常，1：冻结</strong></td>
+						<td class="last">
+							{if $court.status == 0}
+							正常
+							{elseif $court.status == 1}
+							<font color="red">冻结</font>
+							{/if}
+						</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>创建时间</strong></td>
+						<td class="last">{$court.create_time|date_format:"%Y-%m-%d %H:%M"}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>创建者</strong></td>
+						<td class="last">{$court.create_username}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>最后更新时间</strong></td>
+						<td class="last">{$court.update_time|date_format:"%Y-%m-%d %H:%M"}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>最后更新者</strong></td>
+						<td class="last">{$court.update_username}</td>
+					</tr>
+					<tr>
+						<th class="full" colspan="2"><a href="court.php?action=edit&court_id={$court.id}">修改</a></th>
+					</tr>
+				</table>
+		    </div>
+		</div>
+		{include file="admin/admin_right.html"}
+	</div>
+
+{include file="admin/admin_footer.html"}

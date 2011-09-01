@@ -1,0 +1,54 @@
+{include file="moudle/moudle_header.html"}
+
+<body>
+<div class="inner_top" id="inner_top">
+
+  {* 顶部工具条 *}
+  	{include file="moudle/moudle_toolsbar.html"}
+  {* 顶部工具条 *}
+
+  <div class="logoandmenubar" id="logoandmenubar">
+	<div class="logo" id="logo"></div>
+
+	{* 导航栏 *}
+  		{include file="moudle/moudle_navigate.html"}
+    {* 导航栏 *}
+
+  </div>
+</div>
+
+<div class="inner_body" id="inner_body">
+	<div class="inform_title_ok">{$msg.title}</div>
+	<div class="login_area">
+		<div class="login_area_left">
+			<div class="reg_area_commonbar">
+				<div style="text-align: left; font-size: 14px; width: 520px; line-height: 25px; FONT-FAMILY: 微软雅黑;">
+				{$msg.content}
+				<br><br>
+				{*
+					<a href="index.php">返回首页</a>
+					<a href="javascript:history.go(-1);">
+				*}
+				</div>
+			</div>
+		</div>
+		<div class="login_area_right">
+			<div class="login_area_right_text">
+			<b>还不是PlayAce.net的会员？</b><br>
+			现在免费注册成为我们的会员，便能立刻享受非凡的运动乐趣。<br><br>
+			<a href="register.php" title=""><img src="../../static/img/btn_regnow.gif" border=0 alt="" title=""></a>
+			<br><br><br>
+			<b>已经是PlayAce.net的会员？</b><br>
+			即刻登录，便能立刻享受非凡的运动乐趣。<br><br>
+			<a href="login.php" title=""><img src="../../static/img/btn_loginnow.gif" border=0 alt="" title=""></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="index_bottom_blank"></div>
+
+{* footer *}
+	{include file="moudle/moudle_footer.html"}
+{* footer *}
+

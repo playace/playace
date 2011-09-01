@@ -1,0 +1,88 @@
+{include file="admin/admin_header.html"}
+
+	<div id="middle">
+		{include file="admin/admin_left.html"}
+
+		<div id="center-column">
+			<div class="top-bar">
+				<h1>分类详情</h1>
+				<div class="breadcrumbs">
+					Homepage > <a href="category.php?action=list">返回列表</a>
+				</div>
+			</div><br />
+
+		    <div class="table">
+				<img src="../../../static/img/admin/admin_style/bg-th-left.gif" width="8" height="7" alt="" class="left" />
+				<img src="../../../static/img/admin/admin_style/bg-th-right.gif" width="7" height="7" alt="" class="right" />
+				<table class="listing form" cellpadding="0" cellspacing="0">
+					<tr>
+						<th class="full" colspan="2">分类</th>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>分类名称</strong></td>
+						<td class="last">{$category.catname}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>上一层父节点（根节点为0）</strong></td>
+						<td class="last">{$category.parent_id}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>父节点数组（从根节点开始）</strong></td>
+						<td class="last">{$category.parent_arr}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>有无子节点（0：无，1：有）</strong></td>
+						<td class="last">
+							{if $court.has_child == 0}
+							无
+							{elseif $court.has_child == 1}
+							有
+							{/if}
+						</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>子节点数组（从本身开始）</strong></td>
+						<td class="last">{$category.child_arr}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>分类url</strong></td>
+						<td class="last">{$category.url}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>本分类文件目录</strong></td>
+						<td class="last">{$category.cat_dir}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>父节点文件目录</strong></td>
+						<td class="last">{$category.parent_dir}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>简介</strong></td>
+						<td class="last">{$category.description}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>创建时间</strong></td>
+						<td class="last">{$category.create_time|date_format:"%Y-%m-%d %H:%M"}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>创建者</strong></td>
+						<td class="last">{$category.create_username}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>最后更新时间</strong></td>
+						<td class="last">{$category.update_time|date_format:"%Y-%m-%d %H:%M"}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>最后更新者</strong></td>
+						<td class="last">{$category.update_username}</td>
+					</tr>
+					<tr>
+						<th class="full" colspan="2"><a href="category.php?action=edit&catid={$category.id}">修改</a></th>
+					</tr>
+				</table>
+		    </div>
+		</div>
+		{include file="admin/admin_right.html"}
+	</div>
+
+{include file="admin/admin_footer.html"}

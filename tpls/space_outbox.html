@@ -1,0 +1,84 @@
+{include file="moudle/moudle_header.html"}
+
+<body>
+<div class="inner_top" id="inner_top">
+
+  {* 顶部工具条 *}
+  	{include file="moudle/moudle_toolsbar.html"}
+  {* 顶部工具条 *}
+
+  <div class="logoandmenubar" id="logoandmenubar">
+	<div class="logo" id="logo"></div>
+
+	{* 导航栏 *}
+  		{include file="moudle/moudle_navigate.html"}
+    {* 导航栏 *}
+
+  </div>
+</div>
+
+<div class="inner_body" id="inner_body">
+	<div class="uc_title">
+		我的地盘
+	</div>
+	<div class="inner_content">
+		<div class="inner_content_left">
+
+			{* 个人信息 *}
+		  		{include file="moudle/moudle_space_userprofile.html"}
+		    {* 个人信息 *}
+
+			{* 个人中心导航栏 *}
+		  		{include file="moudle/moudle_space_nav.html"}
+		    {* 个人中心导航栏 *}
+
+			<div class="inner_content_left_subbar">
+				<div class="inner_content_left_subbar_title">发件箱</div>
+			</div>
+			<div class="uc_linenodash_noheightcontrol">
+				<div class="uc_msgmenu_block">
+
+					{* 短消息菜单 *}
+				  		{include file="moudle/moudle_space_msg_menu.html"}
+				    {* 短消息菜单 *}
+
+				</div>
+				<div class="uc_msgcontent_block">
+
+					{* 已发送信息 *}
+					{foreach from=$outbox_msg item=item}
+					<div class="uc_msgcontent_line">
+						<div class="uc_msgcontent_title">
+							<a href="space_message.php?action=read_msg&msg_type=outbox&msg_id={$item.id}">{$item.title}</a>
+						</div>
+						<div class="uc_msgcontent_user">to: {$item.username}</div>
+						<div class="uc_msgcontent_time">{$item.create_time|date_format:"%Y-%m-%d %H:%M:%S"}</div>
+					</div>
+					{foreachelse}
+					<div class="uc_msgcontent_line">
+						<div class="uc_msgcontent_title">无已发送消息</div>
+					</div>
+					{/foreach}
+					{* 已发送信息 *}
+
+				</div>
+			</div>
+
+		</div>
+		<div class="inner_content_right">
+			<div class="inner_content_right_visitorsbar">　　最近来访</div>
+
+			{* 最近来访 *}
+				{include file="moudle/moudle_space_visits.html"}
+			{* 最近来访 *}
+
+		</div>
+	</div>
+</div>
+
+<div class="index_bottom_blank"></div>
+
+{* footer *}
+	{include file="moudle/moudle_footer.html"}
+{* footer *}
+

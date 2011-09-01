@@ -1,0 +1,135 @@
+{include file="moudle/moudle_header.html"}
+
+<body>
+<div class="inner_top" id="inner_top">
+
+  {* 顶部工具条 *}
+  	{include file="moudle/moudle_toolsbar.html"}
+  {* 顶部工具条 *}
+
+  <div class="logoandmenubar" id="logoandmenubar">
+	<div class="logo" id="logo"></div>
+
+	{* 导航栏 *}
+  		{include file="moudle/moudle_navigate.html"}
+    {* 导航栏 *}
+
+  </div>
+</div>
+
+<div class="inner_body" id="inner_body">
+	<div class="news_title">
+		金玉良言
+	</div>
+	<div class="inner_content">
+		<div class="inner_content_left">
+			<div class="inner_content_left_bar">
+				<div class="inner_content_news_title">{$news.title}</div>
+			</div>
+			<div class="inner_content_news_parameter">
+			作者：{$news.author_name}&nbsp;&nbsp;&nbsp;
+			分类：{$category.catname}&nbsp;&nbsp;&nbsp;
+			发布时间：{$news.create_time|date_format:"%Y-%m-%d %H:%M"}
+			</div>
+			<div class="inner_content_left_maincontentline">
+				<div class="inner_content_news_body">
+
+				{* 新闻内容 *}
+					{$news_data.content}
+				{* 新闻内容 *}
+
+				</div>
+			</div>
+			<div class="inner_content_left_subbar">
+				<div class="inner_content_left_subbar_title">资讯评论</div>
+			</div>
+			<div class="inner_content_left_content">
+
+				{* 活动评论 *}
+				{foreach from=$comment item=item}
+				<div class="court_comment_line">
+					<div class="court_comment_icon">
+						<img src="{$item.avatar}" width="54" height="54" border=0 alt="" title="">
+					</div>
+					<div class="court_comment_text">
+						<a href="space_ta.php?action=ta_space&uid={$item.uid}">{$item.username}</a>　<span class="activity_comment_time">{$item.create_time|date_format:"%Y-%m-%d %H:%M"}</span><br>
+						{$item.content}
+					</div>
+				</div>
+				{/foreach}
+				{* 活动评论 *}
+
+			</div>
+
+			{* 未登录不能发表评论 *}
+			{if $user_session.username != ''}
+				<form action="comment.php?action=add" method="POST">
+				<input type="hidden" name="class" value="3">	{* 评论类型 3:资讯 *}
+				<input type="hidden" name="topic_id" value="{$news.id}">	{* 评论主题id *}
+				<input type="hidden" name="parent_id" value="0">	{* 回复评论id，0表示不是回复 *}
+				<div class="inner_content_left_subbar">
+					<div class="inner_content_left_subbar_title"><a name="comment"></a>发表评论</div>
+				</div>
+				<div class="inner_content_left_content">
+					<textarea id="comment_content" name="content" style="width:650px;height:150px;visibility:hidden;" class="inner_textarea"></textarea>
+				</div>
+				<div class="inner_content_left_content">
+					<input class="inner_btn" type="submit" value="提交评论">
+				</div>
+				</form>
+			{/if}
+
+		</div>
+		<div class="inner_content_right">
+			<div class="inner_content_right_commentbar">　　最新评论</div>
+
+			{* 资讯评论 *}
+			{foreach from=$news_comment item=item}
+			<div class="inner_content_right_comment" id="inner_content_right_comment">
+				<div id="" class="inner_content_right_commentline">
+					<div class="inner_content_right_commentline_icon">
+						<img src="{$item.avatar}" width="54" height="54" border=0 alt="" title="">
+					</div>
+					<div class="inner_content_right_commentline_text">
+						<a href="space_ta.php?action=ta_space&uid={$item.uid}" title="{$item.username}">{$item.username}</a>：{$item.content}<br>
+						<span class="inner_content_right_commentline_time">{$item.create_time|date_format:"%m-%d %H:%M"}</span></div>
+				</div>
+			</div>
+			{foreachelse}
+				<div class="inner_content_right_commentline_text">
+					暂无资讯评论
+				</div>
+			{/foreach}
+			{* 资讯评论 *}
+
+		</div>
+	</div>
+</div>
+
+<div class="index_bottom_blank"></div>
+
+{* 帮助中心 *}
+	{include file="moudle/moudle_helpcenter.html"}
+{* 帮助中心 *}
+
+{* footer *}
+	{include file="moudle/moudle_footer.html"}
+{* footer *}
+
+
+{* kindeditor 简单模式 *}
+{literal}
+<script charset="utf-8" src="../../static/js/kindeditor/kindeditor.js"></script>
+<script>
+	KE.show({
+		id : 'comment_content',
+		resizeMode : 1,
+		allowPreviewEmoticons : false,
+		allowUpload : false,
+		items : [
+	    'textcolor', '|', 'bgcolor', 'bold', 'italic', 'underline', '|', 'emoticons',
+	    ]
+	});
+</script>
+{/literal}
+{* kindeditor 简单模式 *}

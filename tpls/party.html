@@ -1,0 +1,174 @@
+{include file="moudle/moudle_header.html"}
+
+<body>
+<div class="inner_top" id="inner_top">
+
+  {* 顶部工具条 *}
+  	{include file="moudle/moudle_toolsbar.html"}
+  {* 顶部工具条 *}
+
+  <div class="logoandmenubar" id="logoandmenubar">
+	<div class="logo" id="logo"></div>
+
+	{* 导航栏 *}
+  		{include file="moudle/moudle_navigate.html"}
+    {* 导航栏 *}
+
+  </div>
+</div>
+
+<div class="inner_body" id="inner_body">
+	<div class="activity_title">
+		动感天地
+		<div class="add_activity_block">　<a href="party.php?action=add" title="发起新的活动">发起新的活动</a></div>
+	</div>
+	<div class="inner_content">
+		<div class="inner_content_left">
+			<!--<div class="keyselections">
+				<div class="keyselections_line">
+					<div class="keyselections_text">区域</div>
+					<div class="keyselections_content">
+						<a href="party.php" title="">全部区域</a>
+
+						{* 区域 *}
+						{foreach from=$area item=item}
+							<a href="party.php?action=filter&area_id={$item.id}">{$item.area}</a>
+						{/foreach}
+
+					</div>
+				</div>
+				<div class="keyselections_line">
+					<div class="keyselections_text">分类</div>
+					<div class="keyselections_content">
+						<a href="party.php" title="">全部分类</a>
+						<a href="party.php?action=filter&type=" title="">官方活动</a>
+						<a href="party.php?action=filter&type=" title="">会员活动</a>
+					</div>
+				</div>
+				<div class="keyselections_line">
+					<div class="keyselections_text">时间</div>
+					<div class="keyselections_content">
+						<a href="party.php" title="">全部时间</a>
+						<a href="party.php?action=filter&time=" title="">今天</a>
+						<a href="party.php?action=filter&time=" title="">明天</a>
+						<a href="party.php?action=filter&time=" title="">最近一周</a>
+						<a href="party.php?action=filter&time=" title="">周末</a>
+					</div>
+				</div>
+				<div class="keyselections_line">
+					<div class="keyselections_text">搜索</div>
+					<div class="keyselections_content">
+						<form action="party.php?action=search" method="POST">
+						<INPUT class="keyselection_input"  maxLength=40 type="text" name="keywords" id="keywords" value="" onblur="fEvent('blur',this);" onfocus="fEvent('focus',this);" onmouseover="fEvent('mouseover',this)" onmouseout="fEvent('mouseout',this)">
+						<input class="keyselection_btn" type="submit" value="搜索">
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="inner_adbanner_690_080"><a href="" title=""><img src="../../static/img/ad.jpg" border=0 alt="" title="" width="690" height="80"></a></div>
+-->			<div class="inner_content_left_bar">
+				<div class="inner_content_left_bar_title">最新活动</div>
+				<div class="inner_content_left_bar_more"><a href="party.php?action=list&class=new" title="">» 更多活动</a></div>
+			</div>
+
+			{* 最新活动 *}
+			{foreach from=$new_party item=item}
+			<div class="inner_content_left_maincontentline">
+				<div class="activity_main_icon">
+					<a href="party.php?action=view&party_id={$item.id}" title="{$item.title}">
+						<img src="{$item.thumb}"  width="128" height="128" border="0" alt="" title="">
+					</a>
+				</div>
+				<div class="activity_main_content">
+					<div class="activity_main_title">
+						<a href="party.php?action=view&party_id={$item.id}" title="{$item.title}">{$item.title|truncate:50:"..."}</a>
+					</div>
+					<div class="activity_main_detail">类型：
+						{if $item.kind == 0}
+						<font color="red">官方活动</font>
+						{elseif $item.kind == 1}
+						会员活动
+						{/if}
+					</div>
+					<div class="activity_main_detail">活动时间：{$item.start_time|date_format:"%Y-%m-%d %H:%M"} ~ {$item.end_time|date_format:"%Y-%m-%d %H:%M"}</div>
+					<div class="activity_main_detail">报名截止：{$item.start_time|date_format:"%Y-%m-%d %H:%M"}
+						{if $item.start_time > $time}
+							<font color="red">（火热报名中...）</font>
+						{elseif $item.start_time < $time}
+							<font color="blue">（已经截止）</font>
+						{/if}
+					</div>
+					<div class="activity_main_detail">人数限制：{$item.number_limit}　　已经报名：{$item.participants}　　尚余名额：{$item.number_limit - $item.participants}</div>
+					<div class="activity_main_detail">活动地点：{$item.address}</div>
+					<div class="activity_main_links">人气({$item.views})　评论({$item.comments})</div>
+				</div>
+			</div>
+			{foreachelse}
+				没有相关信息
+			{/foreach}
+			{* 最新活动 *}
+
+			<div class="inner_content_left_bar">
+				<div class="inner_content_left_bar_title">活动回顾</div>
+				<div class="inner_content_left_bar_more"><a href="party.php?action=list&class=old" title="">» 更多</a></div>
+			</div>
+			<div class="activity_review">
+
+				{* 活动回顾 *}
+				{foreach from=$old_party item=item}
+				<div class="activity_review_block">
+					<div class="activity_review_icon">
+						<a href="party.php?action=view&party_id={$item.id}" title="{$item.title}">
+							<img src="{$item.thumb}" width="128" height="128" border=0 alt="" title="">
+						</a>
+					</div>
+					<div class="activity_review_title">
+						<a href="party.php?action=view&party_id={$item.id}" title="{$item.title}">
+							{$item.title|truncate:10:"..."}
+						</a>
+					</div>
+				</div>
+				{foreachelse}
+					没有相关信息
+				{/foreach}
+				{* 活动回顾 *}
+
+			</div>
+		</div>
+		<div class="inner_content_right">
+			<div class="inner_content_right_commentbar">　　最新评论</div>
+
+			{* 最新评论 *}
+			{foreach from=$comment item=item}
+			<div class="inner_content_right_comment" id="inner_content_right_comment">
+				<div id="" class="inner_content_right_commentline">
+					<div class="inner_content_right_commentline_icon">
+						<a href="space_ta.php?action=ta_space&uid={$item.uid}">
+							<img src="{$item.avatar}" width="54" height="54" border=0 alt="" title="">
+						</a>
+					</div>
+					<div class="inner_content_right_commentline_text">
+						<div style="height:48px;overflow:hidden">
+							<a href="space_ta.php?action=ta_space&uid={$item.uid}">{$item.username}</a>：{$item.content}
+						</div>
+						<span class="inner_content_right_commentline_time">{$item.create_time|date_format:"%m-%d %H:%M"}</span></div>
+				</div>
+			</div>
+			{foreachelse}
+				没有相关信息
+			{/foreach}
+			{* 最新评论 *}
+
+		</div>
+	</div>
+</div>
+
+<div class="index_bottom_blank"></div>
+
+{* 帮助中心 *}
+	{include file="moudle/moudle_helpcenter.html"}
+{* 帮助中心 *}
+
+{* footer *}
+	{include file="moudle/moudle_footer.html"}
+{* footer *}

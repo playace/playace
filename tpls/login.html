@@ -1,0 +1,78 @@
+{include file="moudle/moudle_header.html"}
+
+<body>
+<div class="inner_top" id="inner_top">
+
+  {* 顶部工具条 *}
+  	{include file="moudle/moudle_toolsbar.html"}
+  {* 顶部工具条 *}
+
+  <div class="logoandmenubar" id="logoandmenubar">
+	<div class="logo" id="logo"></div>
+
+	{* 导航栏 *}
+  		{include file="moudle/moudle_navigate.html"}
+    {* 导航栏 *}
+
+  </div>
+</div>
+
+<div class="inner_body" id="inner_body">
+	<div class="login_title">登录验证</div>
+	<div class="login_area">
+		<div class="login_area_left">
+			<form action="login.php?action=login_sign" method="POST">
+			<div class="login_area_commonbar">
+				<div class="login_area_commonbar_text">账　户</div>
+				<div class="login_area_commonbar_formelement">
+					<INPUT class="inner_input"  maxLength=40 type="text" name="email" id="loginform_email" value="请输入注册时填写的email" onblur="fEvent('blur',this);do_loginemailblur();" onfocus="fEvent('focus',this);do_loginemailfocus();" onmouseover="fEvent('mouseover',this)" onmouseout="fEvent('mouseout',this)">
+				</div>
+			</div>
+			<div class="login_area_commonbar">
+				<div class="login_area_commonbar_text">密　码</div>
+				<div class="login_area_commonbar_formelement">
+					<INPUT class="inner_input"  maxLength=40 type="password" name="password" id="loginform_password" value="" onblur="fEvent('blur',this);do_loginpasswordblur();" onfocus="fEvent('focus',this);do_loginpasswordfocus();" onmouseover="fEvent('mouseover',this)" onmouseout="fEvent('mouseout',this)">
+					<!--&nbsp;&nbsp;<a href="" title="">忘记密码?</a>-->
+				</div>
+			</div>
+			{*
+			<div class="login_area_commonbar">
+				<div class="login_area_commonbar_text">验证码</div>
+				<div class="login_area_commonbar_formelement" style="width: 55px;">
+					<INPUT class="inner_input_short"  maxLength=10 type="text" name="verifycode" id="loginform_verifycode" value="" onblur="fEvent('blur',this);" onfocus="fEvent('focus',this);" onmouseover="fEvent('mouseover',this)" onmouseout="fEvent('mouseout',this)">
+				</div>
+				<div class="verifycode_img"><img src="../../static/img/ad.jpg" border=0 width="80" height="26" alt="验证码" title="点击更换图片" style="margin: 0px"></div>
+			</div>
+			<div class="login_area_commonbar">
+				<div class="login_area_commonbar_text"></div>
+				<div class="login_area_commonbar_formelement">
+					<div class="inner_login_rememberme_checkbox"><input type="checkbox" name="rememberusername" id="rememberusername"></div>
+					<div class="inner_login_rememberme_text"><label for="remember_me">记住用户名</label></div>
+				</div>
+			</div>
+			*}
+			<div class="login_area_commonbar">
+				<div class="login_area_commonbar_text"></div>
+				<div class="login_area_commonbar_formelement">
+					<input type="submit" class="inner_login_loginbtn" value="">
+				</div>
+			</div>
+			</form>
+		</div>
+		<div class="login_area_right">
+			<div class="login_area_right_text">
+			<b>还不是PlayAce.net的会员？</b><br><br>
+			现在免费注册成为我们的会员，便能立刻享受非凡的运动乐趣。<br><br>
+			<a href="register.php?action=register" title="马上注册"><img src="../../static/img/btn_regnow.gif" border=0 alt="" title=""></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="index_bottom_blank"></div>
+
+
+{* footer *}
+	{include file="moudle/moudle_footer.html"}
+{* footer *}

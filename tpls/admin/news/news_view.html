@@ -1,0 +1,70 @@
+{include file="admin/admin_header.html"}
+
+	<div id="middle">
+		{include file="admin/admin_left.html"}
+
+		<div id="center-column">
+			<div class="top-bar">
+				<a href="news.php?action=add" class="button">ADD NEW </a>
+				<h1>查看资讯</h1>
+				<div class="breadcrumbs">
+					Homepage > <a href="news.php?action=list">返回列表</a>
+				</div>
+			</div><br />
+
+		    <div class="table">
+				<img src="../../../static/img/admin/admin_style/bg-th-left.gif" width="8" height="7" alt="" class="left" />
+				<img src="../../../static/img/admin/admin_style/bg-th-right.gif" width="7" height="7" alt="" class="right" />
+				<table class="listing form" cellpadding="0" cellspacing="0">
+					<tr>
+						<th class="full" colspan="2">查看资讯</th>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>序号</strong></td>
+						<td class="last">{$news.id}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>标题</strong></td>
+						<td class="last">{$news.title}</td>
+					</tr>
+					<tr class="bg">
+						<td class="first" width="172"><strong>所属栏目</strong></td>
+						<td class="last">{$category.catname}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>所属类型</strong></td>
+						<td class="last">{$news.classid}</td>
+					</tr>
+					<tr class="bg">
+						<td class="first" width="172"><strong>标签（用，分割）</strong></td>
+						<td class="last">{$news.tagid}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>缩略图</strong></td>
+						<td class="last">{$news.thumb}</td>
+					</tr>
+					<tr class="bg">
+						<td class="first" width="172"><strong>关键词</strong></td>
+						<td class="last">{$news.keywords}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>简介</strong></td>
+						<td class="last">{$news.description}</td>
+					</tr>
+					<tr class="bg">
+						<td class="first" width="172"><strong>作者名</strong></td>
+						<td class="last">{$news.author_name}</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>内容</strong></td>
+						<td class="last">
+							<textarea rows="10" cols="100%" name="content">{$news_data.content}</textarea>
+						</td>
+					</tr>
+				</table>
+		    </div>
+		</div>
+		{include file="admin/admin_right.html"}
+	</div>
+
+{include file="admin/admin_footer.html"}

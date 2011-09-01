@@ -1,0 +1,72 @@
+{include file="admin/admin_header.html"}
+
+	<div id="middle">
+		{include file="admin/admin_left.html"}
+
+		<div id="center-column">
+			<div class="top-bar">
+				<h1>修改分类</h1>
+				<div class="breadcrumbs">
+					Homepage > <a href="category.php?action=list">返回列表</a>
+				</div>
+			</div><br />
+
+		    <div class="table">
+				<img src="../../../static/img/admin/admin_style/bg-th-left.gif" width="8" height="7" alt="" class="left" />
+				<img src="../../../static/img/admin/admin_style/bg-th-right.gif" width="7" height="7" alt="" class="right" />
+				<form action="category.php?action=edit" method="POST">
+				<input type="hidden" name="catid" value="{$category.id}">
+				<table class="listing form" cellpadding="0" cellspacing="0">
+					<tr>
+						<th class="full" colspan="2">修改分类</th>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>分类名称</strong></td>
+						<td class="last"><input type="text" class="text" name="catname" value="{$category.catname}" /></td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>上一层父节点（根节点为0）</strong></td>
+						<td class="last"><input type="text" class="text" name="parent_id" value="{$category.parent_id}"  /></td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>父节点数组（从根节点开始）</strong></td>
+						<td class="last"><input type="text" class="text" name="parent_arr" value="{$category.parent_arr}"  /></td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>有无子节点（0：无，1：有）</strong></td>
+						<td class="last">
+							<input type="radio" name="has_child" value="0" {if $category.has_child == 0}checked{/if} />无
+							<input type="radio" name="has_child" value="1" {if $category.has_child == 1}checked{/if} />有
+						</td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>子节点数组（从本身开始）</strong></td>
+						<td class="last"><input type="text" class="text" name="child_arr" value="{$category.child_arr}" /></td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>分类url</strong></td>
+						<td class="last"><input type="text" class="text" name="url" value="{$category.url}" /></td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>本分类文件目录</strong></td>
+						<td class="last"><input type="text" class="text" name="cat_dir" value="{$category.cat_dir}" /></td>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>父节点文件目录</strong></td>
+						<td class="last"><input type="text" class="text" name="parent_dir" value="{$category.parent_dir}" /></td>
+					</tr>
+					<tr class="bg">
+						<td class="first" width="172"><strong>简介</strong></td>
+						<td class="last">
+							<textarea rows="10" cols="100%" name="description"> {$category.description}</textarea>
+						</td>
+					</tr>
+				</table>
+	        	<p><input type="submit" value="确定" class="button"></p>
+	        	</form>
+		    </div>
+		</div>
+		{include file="admin/admin_right.html"}
+	</div>
+
+{include file="admin/admin_footer.html"}

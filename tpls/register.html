@@ -1,0 +1,111 @@
+{include file="moudle/moudle_header.html"}
+
+<body>
+<div class="inner_top" id="inner_top">
+
+  {* 顶部工具条 *}
+  	{include file="moudle/moudle_toolsbar.html"}
+  {* 顶部工具条 *}
+
+  <div class="logoandmenubar" id="logoandmenubar">
+	<div class="logo" id="logo"></div>
+
+	{* 导航栏 *}
+  		{include file="moudle/moudle_navigate.html"}
+    {* 导航栏 *}
+
+  </div>
+</div>
+
+<div class="inner_body" id="inner_body">
+	<div class="reg_title">注册成为PlayAce.net的会员</div>
+	<div class="reg_area">
+		<div class="reg_area_left">
+			<form action="register.php?action=register_sign" method="POST">
+			<div class="reg_area_commonbar">
+				<div class="reg_area_commonbar_text">电子邮箱</div>
+				<div class="reg_area_commonbar_formelement">
+					<input class="inner_input"  maxLength=40 type="text" name="email" id="regform_email" value="" onblur="fEvent('blur',this);" onfocus="fEvent('focus',this);" onmouseover="fEvent('mouseover',this)" onmouseout="fEvent('mouseout',this)">
+					登录使用的邮箱账户<!--，需要验证激活-->
+				</div>
+			</div>
+			<div class="reg_area_commonbar">
+				<div class="reg_area_commonbar_text">用户名</div>
+				<div class="reg_area_commonbar_formelement">
+					<input class="inner_input" maxLength="40" type="text" name="username" id="regform_username" value=" " onblur="fEvent('blur',this);" onfocus="fEvent('focus',this);" onmouseover="fEvent('mouseover',this)" onmouseout="fEvent('mouseout',this)">
+					您在网站的昵称
+				</div>
+			</div>
+			<div class="reg_area_commonbar">
+				<div class="reg_area_commonbar_text">密码</div>
+				<div class="reg_area_commonbar_formelement">
+					<input class="inner_input" maxLength="40" type="password" name="password" id="regform_password" value="" onblur="fEvent('blur',this);" onfocus="fEvent('focus',this);" onmouseover="fEvent('mouseover',this)" onmouseout="fEvent('mouseout',this)">
+					设置您的登录密码，大于6位
+				</div>
+			</div>
+			<div class="reg_area_commonbar">
+				<div class="reg_area_commonbar_text">确认密码</div>
+				<div class="reg_area_commonbar_formelement">
+					<input class="inner_input" maxLength="40" type="password" name="repeat_password" id="reform_confirmpassword" value="" onblur="fEvent('blur',this);" onfocus="fEvent('focus',this);" onmouseover="fEvent('mouseover',this)" onmouseout="fEvent('mouseout',this)">
+					两次密码输入要一致
+				</div>
+			</div>
+			{*
+			<div class="reg_area_commonbar">
+				<div class="reg_area_commonbar_text">验证码</div>
+				<div class="reg_area_commonbar_formelement" style="width: 55px;">
+					<input class="inner_input_short"  maxLength=10 type="text" name="verifycode" id="regform_verifycode" value="" onblur="fEvent('blur',this);" onfocus="fEvent('focus',this);" onmouseover="fEvent('mouseover',this)" onmouseout="fEvent('mouseout',this)">
+				</div>
+				<div class="verifycode_img"><img src="../../static/img/ad.jpg" border=0 width="80" height="26" alt="验证码" title="点击更换图片" style="margin: 0px"></div>
+			</div>
+			*}
+			<div class="reg_area_commonbar">
+				<div class="reg_area_commonbar_text"></div>
+				<div class="reg_area_commonbar_formelement">
+					<div class="inner_reg_agreeservice_checkbox"><input type="checkbox" checked = "checked" name="agreeservice" id="regform_agreeservice"></div>
+					<div class="inner_reg_agreeservice_text"><label for="regform_agreeservice">我已经阅读并同意接受网站的服务协议</label></div>
+				</div>
+			</div>
+			<div class="reg_area_commonbar">
+				<div class="reg_area_commonbar_text"></div>
+				<div class="reg_area_commonbar_formelement">
+					<input type="submit" class="inner_reg_regbtn" value="">
+				</div>
+			</div>
+			<div class="reg_area_highbar">
+				<div class="reg_area_highbar_text"></div>
+				<div class="reg_area_highbar_formelement">
+					<div class="protocol">
+					请完善协议的内容<br>
+					一、本站服务条款的确认和接纳<br>
+					本站的各项电子服务的所有权和运作权归本站。本站提供的服务将完全按照其发布的服务条款和操作规则严格执行。用户同意所有服务条款并完成注册程序，才能成为本站的正式用户。用户确认：本协议条款是处理双方权利义务的约定，除非违反国家强制性法律，否则始终有效。在下订单的同时，您也同时承认了您拥有购买这些产品的权利能力和行为能力，并且将您对您在订单中提供的所有信息的真实性负责。<br>
+					二、服务简介<br>
+					本站运用自己的操作系统通过国际互联网络为用户提供网络服务。同时，用户必须：<br>
+					(1)自行配备上网的所需设备，包括个人电脑、调制解调器或其它必备上网装置。<br>
+					(2)自行负担个人上网所支付的与此服务有关的电话费用、网络费用。<br>
+					基于本站所提供的网络服务的重要性，用户应同意<br>
+					(1)提供详尽、准确的个人资料。<br>
+					(2)不断更新注册资料，符合及时、详尽、准确的要求。<br>
+					本站保证不公开用户的真实姓名、地址、电子邮箱和联系电话等用户信息， 除以下情况外：<br>
+					(1)用户授权本站透露这些信息。<br>
+					(2)相应的法律及程序要求本站提供用户的个人资料。<br>
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+		<div class="reg_area_right">
+			<div class="reg_area_right_text">
+			<b>已经是PlayAce.net的会员？</b><br><br>
+			即可登录，便能立刻享受非凡的运动乐趣。<br><br>
+			<a href="login.php?action=login" title="马上登陆"><img src="../../static/img/btn_loginnow.gif" border=0 alt="" title=""></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="index_bottom_blank"></div>
+
+{* footer *}
+	{include file="moudle/moudle_footer.html"}
+{* footer *}
