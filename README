@@ -1,7 +1,7 @@
-1.´´½¨Ò»¸öÊý¾Ý¿â£¬utf-8¸ñÊ½
+1.åˆ›å»ºä¸€ä¸ªæ•°æ®åº“ï¼Œutf-8æ ¼å¼
 
-2.ÐÞ¸Ä config\mysql.php ÎÄ¼þ£¬ÅäÖÃÊý¾Ý¿â
+2.ä¿®æ”¹ config\mysql.php æ–‡ä»¶ï¼Œé…ç½®æ•°æ®åº“
 
-3.ÐÞ¸Ä config\base.php ÎÄ¼þ£¬ÐÞ¸Ä $config['HTDOCS_BASE_URL'] ºÍ $config['STATIC_URL']
+3.ä¿®æ”¹ config\base.php æ–‡ä»¶ï¼Œä¿®æ”¹ $config['HTDOCS_BASE_URL'] å’Œ $config['STATIC_URL']
 
-4.ÈçÓÐ¶àÈË¿ª·¢µÄÐèÒª£¬ÐÞ¸Ä config\extend.php ÎÄ¼þ£¬ÊäÈëÕýÈ·ÅäÖÃ
+4.å¦‚æœ‰å¤šäººå¼€å‘çš„éœ€è¦ï¼Œä¿®æ”¹ config\extend.php æ–‡ä»¶ï¼Œè¾“å…¥æ­£ç¡®é…ç½®
