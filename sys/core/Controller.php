@@ -27,9 +27,13 @@
  * @author		ExpressionEngine Dev Team
  * @link		http://codeigniter.com/user_guide/general/controllers.html
  */
+
+require_once($system_path . "libraries/Smarty/Smarty.class.php");
+
 class CI_Controller {
 
 	private static $instance;
+	protected static $smarty;
 
 	/**
 	 * Constructor
@@ -50,7 +54,14 @@ class CI_Controller {
 
 		$this->load->set_base_classes()->ci_autoloader();
 		
-		log_message('debug', "Controller Class Initialized");
+		//log_message('debug', "Controller Class Initialized");
+		
+		$rootdir = substr(BASEPATH, 0, strlen(BASEPATH)-4);
+		$this->smarty = new Smarty();
+		$this->smarty->template_dir = $rootdir . 'app/tpls/html/';
+		$this->smarty->compile_dir = $rootdir . 'app/tpls/compile/';
+		$this->smarty->compile_dir = $rootdir . 'app/tpls/config/';
+		$this->smarty->cache_dir = $rootdir . 'app/tpls/cache/';
 	}
 
 	public static function &get_instance()
